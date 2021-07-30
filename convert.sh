@@ -25,8 +25,6 @@ do
     janus-pp-rec $filename"-audio.mjr" $filename.opus >/dev/null 2>&1
     RESULT=$?
     if [ $RESULT -eq 0 ]; then
-      rm -rf $filename.webm
-      rm -rf $filename.opus
       printf "  -> \033[32mComplete\033[0m\n"
     else
       rm -rf "$filename"*.webm
