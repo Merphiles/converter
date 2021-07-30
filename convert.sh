@@ -19,14 +19,14 @@ do
   if [ -f $filename"-audio.mjr" ]; then
     printf "\033[36mProcessing\033[0m $filename\n"
     printf "  -> \033[35mExtracting video\033[0m\n"
-    janus-pp-rec $video /usr/share/nginx/html/converted-videos/$filename.webm >/dev/null 2>&1
+    janus-pp-rec $video $filename.webm >/dev/null 2>&1
     RESULT=$?
     printf "  -> \033[35mExtracting audio\033[0m\n"
-    janus-pp-rec $filename"-audio.mjr" /usr/share/nginx/html/converted-videos/$filename.opus >/dev/null 2>&1
+    janus-pp-rec $filename"-audio.mjr" $filename.opus >/dev/null 2>&1
     RESULT=$?
     if [ $RESULT -eq 0 ]; then
-      rm -rf /usr/share/nginx/html/converted-videos/$filename.webm
-      rm -rf /usr/share/nginx/html/converted-videos/$filename.opus
+      rm -rf $filename.webm
+      rm -rf $filename.opus
       printf "  -> \033[32mComplete\033[0m\n"
     else
       rm -rf "$filename"*.webm
